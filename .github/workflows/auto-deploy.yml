@@ -15,7 +15,7 @@ jobs:
       - name: Generate .env file
         uses: SpicyPizza/create-envfile@v1.3
         with:
-          envkey_API_URL: ${{ secrets.API_URL }}
+          envkey_PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
           envkey_ORIGIN: ${{ secrets.ORIGIN }}
           envkey_PORT: ${{ secrets.PORT }}
 
