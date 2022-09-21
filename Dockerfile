@@ -8,7 +8,7 @@ RUN yarn
 
 COPY . .
 
-EXPOSE 4173
+EXPOSE 3000
 
 RUN yarn build
 
