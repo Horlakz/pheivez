@@ -1,3 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900;&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* default styles */
+@layer base {
+  html {
+    font-family: "Nunito", sans-serif;
+  }
+}
+
+@layer {
+  .center {
+    @apply justify-center place-items-center;
+  }
+
+  .flex-center {
+    @apply flex justify-center place-items-center;
+  }
+
+  .flex-col-center {
+    @apply flex flex-col justify-center place-items-center;
+  }
+
+  .default-transition {
+    transition: all ease-in-out 0.4s;
+  }
+}
