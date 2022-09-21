@@ -18,6 +18,7 @@ jobs:
       - name: run playwright tests
         run: |
           npm install
+          npx playwright install
           npm run test
 
       - name: run eslint
