@@ -1,0 +1,25 @@
+stages:
+  - test
+  - build
+  - deploy
+
+run-eslint:
+  stage: test
+  script:
+    - yarn lint
+
+docker-build:
+  # rules:
+  #   - if: main
+  #     exists:
+  #       - Dockerfile
+
+  stage: build
+  script:
+    - docker build -t pheivez .
+    - docker rm --force pheivez
+
+docker-run:
+  stage: deploy
+  script:
+    - docker run -d -p 8000:3000 pheivez --name pheivez
