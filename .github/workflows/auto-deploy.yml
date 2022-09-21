@@ -1,0 +1,40 @@
+name: Deploy to Linode
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Generate .env file
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_API_URL: ${{ secrets.API_URL }}
+
+          file_name: .env
+          fail_on_empty: false
+
+      - name: Build Docker images
+        run: |
+          docker build . -t pheivez:${{ github.sha }}
+
+  run:
+    runs-on: self-hosted
+
+    needs: build
+
+    steps:
+      - name: remove previous running images
+        run: docker rm --force pheivez
+
+      - name: Run Docker images
+        run: |
+          docker run -d -p 8000:3000 --name pheivez pheivez:${{ github.sha }}
