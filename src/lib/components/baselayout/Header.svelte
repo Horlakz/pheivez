@@ -1,5 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
+
+  import Storage from "$lib/utilities/storage";
+
+  const storage = new Storage();
+
+  const checkToken = storage.check("token");
 </script>
 
 <header class="flex justify-between px-10 py-4 bg-gray-50 border-b">
@@ -13,9 +19,11 @@
       <li class:active={$page.url.pathname === "/about"}>
         <a href="/about">About</a>
       </li>
-      <li class:active={$page.url.pathname === "/todos"}>
-        <a href="/todos">Todos</a>
-      </li>
+      {#if checkToken}
+        <li class:active={$page.url.pathname === "/logout"}>
+          <a href="/logout">Logout</a>
+        </li>
+      {/if}
     </ul>
   </nav>
 </header>
