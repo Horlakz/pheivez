@@ -19,7 +19,8 @@
 
   const login = async () => {
     try {
-      await user.login(email, password);
+      const res = await user.login(email, password);
+      storage.set("token", res.data?.token);
       goto("/admin");
     } catch (e: any) {
       error = e.message;
@@ -78,14 +79,6 @@
     disabled={!email || !password}
     on:click|preventDefault={() => {
       login();
-    }}
+    }}>Login</button
   >
-    {#await login()}
-      Logging...
-    {:then}
-      Login
-    {:catch}
-      {error}
-    {/await}
-  </button>
 </form>
