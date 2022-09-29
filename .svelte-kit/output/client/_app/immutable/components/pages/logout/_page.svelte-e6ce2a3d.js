@@ -1,0 +1,1 @@
+import{S as s,i as n,s as a,o as r}from"../../../chunks/index-7b9ea8f7.js";import{g as i}from"../../../chunks/navigation-bfb6bd44.js";import{S as u}from"../../../chunks/storage-d1e5011e.js";function l(t){const o=new u,e=()=>{o.remove("token"),i("/")};return r(()=>{e()}),[]}class g extends s{constructor(o){super(),n(this,o,l,null,a,{})}}export{g as default};
